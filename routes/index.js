@@ -11,7 +11,7 @@ router.get('/:mac/:hash', function (req, res, next) {
 			if(err) {
 				next(error);
 			}
-			if(process.env.wol_passphrase === hash) {
+			if(process.env.WOL_PASSPHRASE === hash) {
 				return res.json({ 'success': true });
 			}else {
 				let error =  new Error('Incorrect password')

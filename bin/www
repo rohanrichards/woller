@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('woller:server');
 var http = require('http');
+var natUpnp = require('nat-upnp');
+var client = natUpnp.createClient();
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +16,20 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+client.portMapping({
+	public: port,
+	private: port,
+	ttl: 60
+}, function (err) {
+	if(err) {
+		console.log('failed to set up port mapping');
+	}
+	else {
+		console.log('port succesfully mapped')
+		console.log('listening on port: ', port)
+	}
+});
 
 /**
  * Create HTTP server.

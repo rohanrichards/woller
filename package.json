@@ -13,6 +13,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "nat-upnp": "^1.1.1",
     "node-sass-middleware": "0.11.0",
     "node-wol": "^0.1.1"
   }
